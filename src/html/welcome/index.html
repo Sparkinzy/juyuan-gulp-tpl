@@ -1,0 +1,318 @@
+<%include file="inc/header.inc.html"%>
+<div class="container">
+    <div class="sigup-box">
+        <a href="<% $smarty.const.BASE_URL %>/user/login.aspx" target="_blank">已有账号？ 立即登录</a>
+        <div class="layui-tab layui-inline sigup-box-con" lay-filter="reg">
+            <ul class="layui-tab-title sigup-title">
+                <li lay-id="supplier" class="layui-this"><a href="javascript:void(0);">供货商家</a></li>
+                <li lay-id="seller" class=""><a href="javascript:void(0);">网商卖家</a></li>
+                <li lay-id="sheying" class=""><a href="javascript:void(0);">摄影服务</a></li>
+                <li lay-id="daifa" class=""><a href="javascript:void(0);">代发服务</a></li>
+            </ul>
+            <div class="layui-tab-content">
+                <!-- 注册厂家 -->
+                <div id="signupform-supplier" class="layui-tab-item  layui-show">
+                    <!-- 进度 -->
+                    <div class="layui-form-item process">
+                        <div class="on"><span>1</span>&nbsp;验证手机号</div>
+                        <div style="color: #000">— —</div>
+                        <div class=""><span>2</span>&nbsp;注册用户</div>
+                    </div>
+                    <!-- 第一步 -->
+                    <form class="layui-form process-one">
+                        <div class="layui-form-item">
+                            <div style="width:530px; margin: 0 auto;">
+                                <label class="layui-form-label"><b class="ftx01">*</b>手机号</label>
+                                <div class="layui-input-block" style="width:400px">
+                                    <input id="supplier-phone" type="text" name="mobile" lay-verify="required|phone" autocomplete="off" placeholder="请输入手机号" class="layui-input phone-width" autofocus="true">
+                                    <div class="key-code">获取验证码</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div style="width:530px; margin: 0 auto;">
+                                <label class="layui-form-label"><b class="ftx01">*</b>验证码</label>
+                                <div class="layui-input-block" style="width:400px">
+                                    <input type="text" name="vcode" lay-verify="required" autocomplete="off" placeholder="请输入验证码" class="layui-input" maxlength="6">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <button class="next-step" type="submit" lay-submit lay-filter="supplierCheckMobile">下一步</button>
+                        </div>
+                    </form>
+                    <!-- 第二步 -->
+                    <form action="/register/supplier.html" method="post" class="layui-form process-two hidden">
+                        <input type="hidden" name="mobile">
+                        <div class="layui-form-item">
+                            <div style="width:530px; margin: 0 auto;">
+                                <label class="layui-form-label"><b class="ftx01">*</b>用户密码</label>
+                                <div class="layui-input-block" style="width:400px">
+                                    <input type="password" name="pwd" lay-verify="required" autocomplete="off" placeholder="请输入密码" class="layui-input" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div style="width:530px; margin: 0 auto;">
+                                <label class="layui-form-label"><b class="ftx01">*</b>确认密码</label>
+                                <div class="layui-input-block" style="width:400px">
+                                    <input type="password" name="repwd" lay-verify="required" autocomplete="off" placeholder="请再次输入密码" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div style="width:255px;margin:0 auto;text-align: center;">
+                                <input type="checkbox" lay-skin="primary" id="chose-box-supplier" title="我已阅读并同意">
+                                <a class="cangjia" target="_blank" href="<% $smarty.const.BASE_URL%>/ajax/message/show/factory_agreement.html">《厂家注册协议》</a>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <button class="submission" type="submit" lay-submit lay-filter="supplier">确认注册并登陆</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- 注册卖家 -->
+                <div id="signupform-seller" class="layui-tab-item">
+                    <!-- 进度 -->
+                    <div class="layui-form-item process">
+                        <div class="on"><span>1</span>&nbsp;验证手机号</div>
+                        <div style="color: #000">— —</div>
+                        <div class=""><span>2</span>&nbsp;注册用户</div>
+                    </div>
+                    <!-- 第一步 -->
+                    <form class="layui-form process-one">
+                        <div class="layui-form-item">
+                            <div style="width:530px; margin: 0 auto;">
+                                <label class="layui-form-label"><b class="ftx01">*</b>手机号</label>
+                                <div class="layui-input-block" style="width:400px">
+                                    <input id="seller-phone" type="text" name="mobile" lay-verify="phone" autocomplete="off" placeholder="请输入手机号" class="layui-input phone-width" autofocus="true">
+                                    <div class="key-code">获取验证码</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div style="width:530px; margin: 0 auto;">
+                                <label class="layui-form-label"><b class="ftx01">*</b>验证码</label>
+                                <div class="layui-input-block" style="width:400px">
+                                    <input type="text" name="vcode" lay-verify="required" autocomplete="off" placeholder="请输入验证码" class="layui-input" maxlength="6">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <button class="next-step" type="submit" lay-submit lay-filter="sellerCheckMobile">下一步</button>
+                        </div>
+                    </form>
+                    <!-- 第二步 -->
+                    <form  action="/register/seller.html" method="post" class="layui-form process-two hidden">
+                        <input type="hidden" name="mobile">
+                        <div class="layui-form-item">
+                            <div style="width:530px; margin: 0 auto;">
+                                <label class="layui-form-label"><b class="ftx01">*</b>用户密码</label>
+                                <div class="layui-input-block" style="width:400px">
+                                    <input type="password" name="pwd" lay-verify="required" autocomplete="off" placeholder="请输入密码" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div style="width:530px; margin: 0 auto;">
+                                <label class="layui-form-label"><b class="ftx01">*</b>确认密码</label>
+                                <div class="layui-input-block" style="width:400px">
+                                    <input type="password" name="repwd" lay-verify="required" autocomplete="off" placeholder="请再次输入密码" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div style="width:530px; margin: 0 auto;">
+                                <label class="layui-form-label"><b class="ftx01">*</b>QQ号</label>
+                                <div class="layui-input-block" style="width:400px">
+                                    <input type="text" name="qq" lay-verify="required" autocomplete="off" placeholder="请输入QQ号" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div style="width:530px; margin: 0 auto;">
+                                <label class="layui-form-label"><b class="ftx01">*</b>联系人</label>
+                                <div class="layui-input-block" style="width:400px">
+                                    <input type="text" name="contact" autocomplete="off" placeholder="请输入联系人" class="layui-input" lay-verify="required">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div style="width:255px;margin:0 auto;text-align: center;">
+                                <input type="checkbox" lay-skin="primary" id="chose-box-seller" title="我已阅读并同意">
+                                <a class="cangjia" target="_blank" href="<% $smarty.const.BASE_URL%>/ajax/message/show/seller_agreement.html">《卖家注册协议》</a>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <button class="submission" type="submit" lay-submit lay-filter="seller">确认注册并登陆</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- 注册摄影 -->
+                <div id="signupform-sheying"  class="layui-tab-item ">
+                    <!-- 进度 -->
+                    <div class="layui-form-item process">
+                        <div class="on"><span>1</span>&nbsp;验证手机号</div>
+                        <div style="color: #000">— —</div>
+                        <div class=""><span>2</span>&nbsp;注册用户</div>
+                    </div>
+                    <!-- 第一步 -->
+                    <form class="layui-form process-one">
+                        <div class="layui-form-item">
+                            <div style="width:530px; margin: 0 auto;">
+                                <label class="layui-form-label"><b class="ftx01">*</b>手机号</label>
+                                <div class="layui-input-block" style="width:400px">
+                                    <input id="sheying-phone" type="text" name="mobile" lay-verify="phone" autocomplete="off" placeholder="请输入手机号" class="layui-input phone-width">
+                                    <div class="key-code">获取验证码</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div style="width:530px; margin: 0 auto;">
+                                <label class="layui-form-label"><b class="ftx01">*</b>验证码</label>
+                                <div class="layui-input-block" style="width:400px">
+                                    <input type="text" name="vcode" lay-verify="required" autocomplete="off" placeholder="请输入验证码" class="layui-input" maxlength="6">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <button class="next-step" type="submit" lay-submit lay-filter="sheyingCheckMobile">下一步</button>
+                        </div>
+                    </form>
+                    <!-- 第二步 -->
+                    <form action="/register/sheying.html" method="post" class="layui-form process-two hidden">
+                        <input type="hidden" name="mobile">
+                        <div class="layui-form-item">
+                            <div style="width:530px; margin: 0 auto;">
+                                <label class="layui-form-label"><b class="ftx01">*</b>用户密码</label>
+                                <div class="layui-input-block" style="width:400px">
+                                    <input type="password" name="pwd" lay-verify="required" autocomplete="off" placeholder="请输入密码" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div style="width:530px; margin: 0 auto;">
+                                <label class="layui-form-label"><b class="ftx01">*</b>确认密码</label>
+                                <div class="layui-input-block" style="width:400px">
+                                    <input type="password" name="repwd" lay-verify="required" autocomplete="off" placeholder="请再次输入密码" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div style="width:530px; margin: 0 auto;">
+                                <label class="layui-form-label"><b class="ftx01">*</b>用户地址</label>
+                                <div class="layui-input-block" style="width:400px">
+                                    <input type="text" name="addr" lay-verify="required" autocomplete="off" placeholder="请输入用户地址" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div style="width:530px; margin: 0 auto;">
+                                <label class="layui-form-label"><b class="ftx01">*</b>QQ号</label>
+                                <div class="layui-input-block" style="width:400px">
+                                    <input type="text" name="qq" lay-verify="required" autocomplete="off" placeholder="请输入QQ号" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div style="width:255px;margin:0 auto;text-align: center;">
+                                <input type="checkbox" lay-skin="primary" id="chose-box-sheying" title="我已阅读并同意">
+                                <a class="cangjia" target="_blank" href="<% $smarty.const.BASE_URL%>/ajax/message/show/sheying_agreement.html">《摄影注册协议》</a>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <button class="submission" type="submit" lay-submit lay-filter="sheying">确认注册并登陆</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- 注册代发 -->
+                <div id="signupform-daifa"  class="layui-tab-item ">
+                    <!-- 进度 -->
+                    <div class="layui-form-item process">
+                        <div class="on"><span>1</span>&nbsp;验证手机号</div>
+                        <div style="color: #000">— —</div>
+                        <div class=""><span>2</span>&nbsp;注册用户</div>
+                    </div>
+                    <!-- 第一步 -->
+                    <form class="layui-form process-one">
+                        <div class="layui-form-item">
+                            <div style="width:530px; margin: 0 auto;">
+                                <label class="layui-form-label"><b class="ftx01">*</b>手机号</label>
+                                <div class="layui-input-block" style="width:400px">
+                                    <input id="daifa-phone" type="text" name="mobile" lay-verify="phone" autocomplete="off" placeholder="请输入手机号" class="layui-input phone-width">
+                                    <div class="key-code">获取验证码</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div style="width:530px; margin: 0 auto;">
+                                <label class="layui-form-label"><b class="ftx01">*</b>验证码</label>
+                                <div class="layui-input-block" style="width:400px">
+                                    <input type="text" name="vcode" lay-verify="required" autocomplete="off" placeholder="请输入验证码" class="layui-input" maxlength="6">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <button class="next-step" type="submit" lay-submit lay-filter="daifaCheckMobile">下一步</button>
+                        </div>
+                    </form>
+                    <!-- 第二步 -->
+                    <form action="/register/daifa.html" method="post" class="layui-form process-two hidden">
+                        <input type="hidden" name="mobile">
+                        <div class="layui-form-item">
+                            <div style="width:530px; margin: 0 auto;">
+                                <label class="layui-form-label"><b class="ftx01">*</b>用户密码</label>
+                                <div class="layui-input-block" style="width:400px">
+                                    <input type="password" name="pwd" lay-verify="required" autocomplete="off" placeholder="请输入密码" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div style="width:530px; margin: 0 auto;">
+                                <label class="layui-form-label"><b class="ftx01">*</b>确认密码</label>
+                                <div class="layui-input-block" style="width:400px">
+                                    <input type="password" name="repwd" lay-verify="required" autocomplete="off" placeholder="请再次输入密码" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div style="width:530px; margin: 0 auto;">
+                                <label class="layui-form-label"><b class="ftx01">*</b>联系人</label>
+                                <div class="layui-input-block" style="width:400px">
+                                    <input type="text" name="contact" lay-verify="required" autocomplete="off" placeholder="请输入联系人" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div style="width:530px; margin: 0 auto;">
+                                <label class="layui-form-label"><b class="ftx01">*</b>QQ号</label>
+                                <div class="layui-input-block" style="width:400px">
+                                    <input type="text" name="qq" lay-verify="required" autocomplete="off" placeholder="请输入QQ号" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div style="width:530px; margin: 0 auto;">
+                                <label class="layui-form-label"><b class="ftx01">*</b>用户地址</label>
+                                <div class="layui-input-block" style="width:400px">
+                                    <input type="text" name="addr" lay-verify="required" autocomplete="off" placeholder="请输入用户地址" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div style="width:255px;margin:0 auto;text-align: center;">
+                                <input type="checkbox" lay-skin="primary" id="chose-box-daifa" title="我已阅读并同意">
+                                <a class="cangjia" target="_blank" href="<% $smarty.const.BASE_URL%>/ajax/message/show/issuing_agreement.html">《代发注册协议》</a>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <button class="submission" type="submit" lay-submit lay-filter="daifa">确认注册并登陆</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%include file="inc/footer.inc.html"%>
+<script type="text/javascript" src="/assets/src/js/signup.js"></script>

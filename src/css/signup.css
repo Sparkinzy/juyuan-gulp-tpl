@@ -1,0 +1,108 @@
+.hidden{
+  display: none;
+  height: 0;
+}
+.phone-width{
+  display: inline-block;
+  width: 275px;
+}
+.sigup-box{
+  position: relative;
+  text-align: center;
+  padding-top: 100px;    
+  padding-bottom: 105px;
+  width: 900px;
+  margin: 0 auto;
+}
+.sigup-box-con{
+  width: 100%;
+}
+.sigup-title li{
+  width: 110px;
+  background: #F0EFEF;
+}
+.sigup-title>.layui-this{
+  background: #FF0B13;
+}
+.sigup-title>.layui-this a{
+  color: #fff;
+}
+.sigup-title>.layui-this:after{
+  border: none;
+}
+.sigup-box>a{
+  color: #FF4242;
+  position: absolute;
+  right: 0;
+  z-index: 2;
+  top: 110px;
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+}
+.process{
+  width: 100%;
+  text-align: center;
+}
+.process div{
+  display: inline-block;
+  color: #939393;
+  font-size: 18px;
+  margin: 50px 0;
+}
+.process span{
+  display: inline-block;
+  border: 1px solid #939393;
+  border-radius: 50%;
+  width: 18px;
+  text-align: center;
+  line-height: 18px;
+}
+.process>.on{
+  color: #2C2C2C;
+}
+.process>.on>span{
+  background: #2C2C2C;
+  border-color: #2C2C2C;
+  color: #fff;
+}
+.ftx01 {
+  color: #F00;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+#tel-phone{
+  float: left;
+  width: 270px;
+}
+.key-code{
+  float: right;
+  height: 38px;
+  line-height: 38px;
+  width: 110px;
+  text-align: center;
+  color: #9F9F9F;
+  background: #E1E1E1;
+  cursor: pointer;
+}
+.key-code:hover{
+  color: #f04848;
+}
+.next-step,.submission{
+  display: block;
+  width:300px; 
+  margin: 0 auto;
+  height: 38px;
+  line-height: 38px;
+  text-align: center;
+  background: #FF0B13;
+  color:#fff;
+  margin-top: 50px;
+  cursor: pointer;
+}
+.cangjia{
+    margin-top: 9px;
+    float: right;
+    cursor: pointer;
+    color: #FF0B13;
+}

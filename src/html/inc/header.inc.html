@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no" /><!-- 禁止苹果浏览器Safari将数字识别成电话号码 -->
+    <meta name="format-detection" content="email=no" /><!-- 不识别邮箱 -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    <link rel="apple-touch-icon" href="/assets/src/img/logo/apple-touch-icon.png">
+    <link rel="icon" type="image/ico" href="/assets/src/img/logo/favicon.ico">
+    <link rel="shortcut icon" href="/assets/src/img/logo/K3SCICON.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>账户注册 - <% $smarty.const.SITE_TITLE %>(<%$smarty.const.MAIN_DOMAIN%>)</title>
+    <link rel="stylesheet" type="text/css" href="//public.k3cdn.com/layui/2.3.0/css/layui.css">
+    <script type="text/javascript" src="//public.k3cdn.com/layui/2.3.0/layui.js"></script>
+    <link rel="stylesheet" href="/assets/src/css/iconfont.css">
+    <link rel="stylesheet" href="/assets/src/css/header.css">
+    <link rel="stylesheet" href="/assets/src/css/footer.css">
+    <link rel="stylesheet" href="/assets/src/css/style.css">
+    <link rel="stylesheet" href="/assets/src/css/signup.css">
+    <script type="text/javascript">if (window!=top) top.location.href =window.location.href;</script>
+    <script>
+        //JavaScript代码区域
+        //config的设置是全局的
+        layui.config({
+          base: '/assets/src/js/' //假设这是cookie.js所在的目录（本页面的相对路径）
+        }).extend({ //设定模块别名
+          //cookie: 'cookie'   如果cookie.js是在根目录，也可以不用设定别名,因为我cookie.js的是在根目录，所以这句话其实也不用写也行。
+        });
+        //使用拓展模块
+        layui.use(['element','form'], function(){
+        var element = layui.element,
+            form = layui.form;
+            //Hash地址的定位
+            var layid = location.hash.replace(/^#reg=/, '');
+            element.tabChange('reg', layid);
+              
+            element.on('tab(reg)', function(elem){
+                location.hash = 'reg='+ $(this).attr('lay-id');
+            });
+        });
+    </script>
+</head>
+<body>
+    <!--头部导航s-->
+    <div class="header_list">
+        <div class="header_list_box">
+            <ul class="header_list_left">
+                <li>
+                    <div class="modular">
+                        <a href="javascript:void(0);">
+                            <img width="92px" src="/assets/src/img/logo/k3-logo.png" ></a>
+                    </div>
+                </li>
+                <li>
+                    <div class="border_right">
+                        <div class="modular">
+                            <i class="iconfont icon-fangzi" style="color: #e7e7e7; display:inline-block ;margin-top:-1px;padding-left: 20px;float: left;"></i>
+                            <a href="<% $smarty.const.BASE_URL %>" >首页</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="border_right">
+                        <div class="modular">
+                                <a href="<% $smarty.const.BASE_URL %>">女鞋货源</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="border_right">
+                        <div class="modular">
+                            <a href="<% $smarty.const.BASE_URL %>/supplier.html">市场商家</a>
+                        </div>
+                    </div>
+                </li>
+                <li style="display:none;">
+                    <div class="border_right">
+                        <div class="modular modular1">
+                            <a href="javascript:void(0);">开山榜</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="border_right">
+                        <div class="modular modular1">
+                            <a href="<% $smarty.const.BASE_URL %>/daifa.html">找代发</a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="border_right" style="border:0">
+                        <div class="modular modular1">
+                            <a href="<% $smarty.const.BASE_URL %>/sheying.html">找摄影</a>
+                        </div>
+                    </div>
+                </li>
+                <li style="display:none;">
+                    <div class="border_right">
+                        <div class="modular modular1">
+                            <a href="<% $smarty.const.BASE_URL %>/kuaidi.html">找快递</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <ul class="header_list_right" id="state" data-urls='["/wenling/seller/index","/wenling/supplier","/manage/cameraman","/manage/daifa/index"]' data-fast-url="/user/fastlogin/1" data-base-url="<%$smarty.const.BASE_URL%>">
+                <li style="display:none;">
+                    <a style="color:#e7e7e7" href="<%$smarty.const.BASE_URL%>/Help.aspx" target="_blank">新手帮助</a>
+                </li>
+                <li class="Mobile_app" style="width: 150px;">
+                    <a href="#" style="color:#e7e7e7">开山网手机APP
+                        <i class="iconfont icon-xiajiantou"></i>
+                    </a>
+                    <div class="app_img" style="height:150px">
+                        <img src="/assets/src/img/logo/Mobile_app.jpg"/>
+                    </div>
+                </li>
+               <!--  <li class="register-btn">
+                    <div class="border_right">
+                        <a class="nav_r" href="<%$smarty.const.BASE_URL%>/user/register.aspx">注册</a>
+                    </div>
+                </li> -->
+                <li class="login-btn">
+                    <div class="border_right">
+                        <a class="nav_l" href="<%$smarty.const.BASE_URL%>/user/login.aspx">登录</a>
+                    </div>
+                </li>
+                <li style="display: none;" id="nav_user">
+                    <div class="border_right">
+                        <a class="nav_r" href="javascript:;"  title="点击进入管理中心" alt="点击进入管理中心">管理中心</a>
+                        <ul class="nav_user">
+                            <li style="display: none;" data-toggle="seller"><a href="<%$smarty.const.BASE_URL%>/api/queue/add_queue">已选款</a></li>
+                            <li style="display: none;" data-toggle="supplier"><a href="<%$smarty.const.BASE_URL%>/wenling/supplier/product_upload">上传产品</a></li>
+                            <li><a href="/logout.aspx">退出</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="user-name" style="display: none;">
+                    <div class="border_right">
+                        <a class="nav_l" href="javascript:;" title="点击进入管理中心" alt="点击进入管理中心"></a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--头部导航e-->
+    <!--侧边栏s-->
+    <div class="sidebar">
+        <div class="kefu" id="custom">
+            <a href="javascript:void(0);"><i class="iconfont icon-ico_zaixiankefu"></i><p style="font-size:13px;">找客服</p></a>
+            <div id="customQQ" class="customQQ">
+                <div class="cover"></div>
+                <i id="fixed_close" class="close"></i>
+                <p class="time">(在线：<%$smarty.const.SERVICE_TIME%>)</p>
+                <p class="tt header-supplier-qq-title " style="display:none">厂家咨询</p>
+                <a href="#"  class="QQ header-supplier-qq-data " style="display:none"></a>
+                <p class="tt">网站客服</p>
+                <a href="/api/chat/service"  class="QQ"></a>
+                <p class="tt">客服电话</p>
+                <p class="tel"><%$smarty.const.SERVICE_PHONE%></p>
+                <p class="t">（免长途费）</p>
+                <p class="tt">快速通道</p>
+                <p class="t"><a href="<%$smarty.const.BASE_URL%>/wenling/supplier/product_upload">快速上传新款</a></p>
+                <p class="t"><a href="<%$smarty.const.BASE_URL%>/api/chat/service">免费名片门牌</a></p>
+            </div>
+        </div>
+        <div class="phone">
+            <a href="javascript:void(0);"><i class="iconfont icon-erweimaxiao"></i><p style="font-size:13px;">手机版</p></a>
+            <div class="erweima">
+                <p style="background: url(/assets/src/img/logo/Mobile_app.jpg) no-repeat;"></p>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar" style="top:560px;">
+        <!-- <div class="new_news">
+            <a href="#"><i class="iconfont icon-xinxi"></i><p style="font-size:13px;">新消息</p></a>
+        </div> -->
+        <div id="to_top" class="scroll_top"><a href="#"><i class="iconfont icon-shangjiantou"></i></a></div>
+    </div>
+    <!--侧边栏e-->
+
+ 
