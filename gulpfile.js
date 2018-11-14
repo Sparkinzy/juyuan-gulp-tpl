@@ -9,8 +9,9 @@ var gulp = require('gulp'),
     rev = require('gulp-rev'), //更改版本名 md5后缀
     autoFx = require('gulp-autoprefixer'), //加浏览器前缀
     livereload = require('gulp-livereload');
-    revCollector = require('gulp-rev-collector'); //gulp-rev 的插件，用于html模板更改引用路径
-    plumber = require('gulp-plumber'); // 可以阻止 gulp 插件发生错误导致进程退出并输出错误日志。
+    var revCollector = require('gulp-rev-collector'); //gulp-rev 的插件，用于html模板更改引用路径
+    var plumber = require('gulp-plumber'); // 可以阻止 gulp 插件发生错误导致进程退出并输出错误日志。
+    var cached = require('gulp-cached');
 // 全局配置
 var options = {
     dist_html_dir : '../../application/views/templates', // 模版目录
@@ -29,6 +30,7 @@ gulp.task('clean', function() {
 //压缩css/加浏览器前缀
 gulp.task('css', function() {
     return gulp.src(options.src_css)
+    .pipe(cached('css'))
     .pipe(plumber())
     .pipe(autoFx({
         browsers: ['last 10 versions', 'Firefox >= 20', 'Opera >= 36', 'ie >= 8', 'Android >= 4.0'],
@@ -45,14 +47,15 @@ gulp.task('css', function() {
     .pipe(gulp.dest('dist/rev/css'));
 });
 // js语法检测
-gulp.task('checkJs',function(){
-  return gulp.src('dist/js/*.js')
-          .pipe(jshint)
-          .pipe(jshint.reporter('default'));
-});
+// gulp.task('checkJs',function(){
+//   return gulp.src('dist/js/*.js')
+//           .pipe(jshint)
+//           .pipe(jshint.reporter('default'));
+// });
 //压缩js
 gulp.task('js', function() {
     return gulp.src(options.src_js)
+    .pipe(cached('js'))
     .pipe(plumber())
     .pipe(uglify())
     .pipe(rev())
@@ -64,6 +67,7 @@ gulp.task('js', function() {
 //压缩image
 gulp.task('image', function() {
     return gulp.src(options.src_img)
+    .pipe(cached('image'))
     .pipe(imageMin({
         optimizationLevel: 5,
         progressive: true,
@@ -113,14 +117,17 @@ gulp.task('revimg', function() {
 gulp.task('default', function(cb){
     gulpSequence('clean', 'css', 'js', 'image', 'rev','revimg')(cb);
 });
+gulp.task('dev', function(cb){
+    gulpSequence( 'css', 'js', 'image', 'rev','revimg')(cb);
+});
 
 gulp.task('watch',function(){
     livereload.listen({
         start:true
     });
-    gulp.watch(options.src_html,['default']);
-    gulp.watch(options.src_js,['default']);
-    gulp.watch(options.src_css,['default']);
+    gulp.watch(options.src_html,['dev']);
+    gulp.watch(options.src_js,['dev']);
+    gulp.watch(options.src_css,['dev']);
 });
 
 
